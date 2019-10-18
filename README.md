@@ -1,4 +1,4 @@
-dewi-behaviour
+xpb-behaviour
 ==============
 
 Behavior code.
