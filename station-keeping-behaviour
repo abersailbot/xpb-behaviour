@@ -31,7 +31,7 @@ class StationKeepingBehaviour(Navigator):
 
             self.nearest_line_points = sorted(sorted_points, key=lambda x: x[0])
             self.nearest_line_points = [n[1] for n in self.nearest_line_points][0:2]
-        
+
             if self.boat.position.cross_track_distance(self.nearest_line_points[1], self.nearest_line_points[0]) < 0:
                 self.start_negative = True
             else:
@@ -47,21 +47,21 @@ class StationKeepingBehaviour(Navigator):
             self.center_reached = True
 
         # still outside box
-        if self.center_reached is False:        
-        
-            distance_to_edge = self.boat.position.cross_track_distance(\
+        if self.center_reached is False:
+
+            distance_to_edge = self.boat.position.cross_track_distance(
                                self.nearest_line_points[1], self.nearest_line_points[0])
             # if now in box
             if (distance_to_edge <= 0 and self.start_negative is False)\
              or (distance_to_edge >= 0 and self.start_negative is True):
-             
-                print 'YOU HAVE CROSSED THE LINE ' * 20
+
+                print ('YOU HAVE CROSSED THE LINE ' * 20)
                 self.line_crossed = True
                 self.enter_time = time.time()
                 self.bearing_edge_to_center = self.boat.position.bearing_to(self.center)
 
             return None
-        
+
         # while in box
         elif self.center_reached is True:
             # wait for time
